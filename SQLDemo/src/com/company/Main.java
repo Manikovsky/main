@@ -2,7 +2,7 @@ package com.company;
 import java.sql.*;
 public class Main {
 
-    public static final String DB_URL = "jdbc:h2:/home/hackerman/java/SQLDemo/db/stockExchange";
+    public static final String DB_URL = "jdbc:h2:C:\\Users\\Ivan\\IdeaProjects\\sber\\SQLDemo\\db";
     public static final String DB_Driver = "org.h2.Driver";
 
     public static void main(String[] args) {

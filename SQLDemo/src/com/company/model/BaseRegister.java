@@ -1,7 +1,9 @@
 package com.company.model;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import java.util.Objects;
+@JsonAutoDetect
 public class BaseRegister {
 
     private long id;

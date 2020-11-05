@@ -1,10 +1,15 @@
 package com.company.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect
 public class HandbookRegister extends BaseRegister {
     private String firstName;
     private String lastName;
     private String numberPhone;
+    public HandbookRegister() {
 
+    }
     public HandbookRegister(long id, String firstName, String lastName, String numberPhone) {
         super(id);
         this.firstName = firstName;
@@ -34,5 +39,15 @@ public class HandbookRegister extends BaseRegister {
 
     public void setNumberPhone(String numberPhone) {
         this.numberPhone = numberPhone;
+    }
+
+    @Override
+    public String toString() {
+        return "HandbookRegister{" +
+                "id='" + getId() + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                '}';
     }
 }

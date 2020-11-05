@@ -1,61 +1,61 @@
 package com.company.service;
 
 import com.company.model.HandbookRegister;
-import com.company.repository.HandBooks;
+import com.company.repository.HandbookDAO;
+import com.company.repository.TableDAO;
+
 import java.sql.*;
 import java.util.List;
 
 public class Service {
 
-    HandBooks handBooks;
+    TableDAO handBooks = new HandbookDAO();;
 
     public static Connection getConnection() {
         return ConnectionFactory.getConnection();
     }
 
-    public Service() throws SQLException {
-        handBooks = new HandBooks();
+    public TableDAO getHandBooks() {
+        return handBooks;
     }
 
-    public boolean createTable() throws SQLException {
+    public void setHandBooks(TableDAO handBooks) {
+        this.handBooks = handBooks;
+    }
+
+    public void createTable() {
         handBooks.createTable();
     }
 
-    public boolean insert(String firstName, String lastName, String number) throws SQLException{
-        handBooks.insert();
+    public void insert(HandbookRegister register) {
+        handBooks.insert(register);
     }
 
-    public List<HandbookRegister> findInFirstName(String firstName) throws SQLException{
-        handBooks.select();
+    public List<HandbookRegister> findInFirstName(HandbookRegister register) {
+        return handBooks.select(register);
     }
 
-    public List<HandbookRegister> findInLastName(String lastName) {
-
+    public List<HandbookRegister> findInLastName(HandbookRegister register) {
+        return handBooks.select(register);
     }
-    public HandbookRegister findInId(long id) {
-
+    public List<HandbookRegister> findInId(HandbookRegister register) {
+        return handBooks.select(register);
     }
-    public boolean update(long id) {
-
+    public List<HandbookRegister> findInFullName(HandbookRegister register) {
+        return handBooks.select(register);
+    }
+    public void update(HandbookRegister register) {
+        handBooks. update(register);
     }
     public void deleteHandbook() {
-
+        handBooks.deleteTable();
+    }
+    public void deleteRegister(HandbookRegister register) {
+        handBooks.deleteRegister(register);
     }
 
-
-
-    public static void main(String[] args) {
-        try{
-            Service service = new Service();
-           // service.createTables();
-           // service.insert();
-            service.select();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Ошибка SQL !");
-        } catch (ClassNotFoundException e) {
-            System.out.println("JDBC драйвер для СУБД не найден!");
-        }
+    public void closeConnection() {
+        handBooks.close();
     }
+
 }

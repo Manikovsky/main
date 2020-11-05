@@ -1,4 +1,0 @@
-2020-11-04 09:36:18 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "INSERT INTO Handbook (name, changeProbability, delta) VALUES ('qw','1',[*]'1)"
-Syntax error in SQL statement "INSERT INTO Handbook (name, changeProbability, delta) VALUES ('qw','1',[*]'1)"; SQL statement:
-INSERT INTO Handbook (name, changeProbability, delta) VALUES ('qw','1','1) [42000-200]

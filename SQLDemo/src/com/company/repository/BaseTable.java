@@ -19,9 +19,11 @@ public abstract class BaseTable implements Closeable {
     BaseTable() {
         this.connection = Service.getConnection();
     }
+
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+
     @Override
     public void close() {
         try {
@@ -32,7 +34,8 @@ public abstract class BaseTable implements Closeable {
             e.printStackTrace();
         }
     }
-    void executeSqlStatement(String sql){
+
+    void executeSqlStatement(String sql) {
         reopenConnection();
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);

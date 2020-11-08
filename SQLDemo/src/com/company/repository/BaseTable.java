@@ -1,27 +1,22 @@
 package com.company.repository;
 
-import com.company.model.HandbookRegister;
 import com.company.service.Service;
-
 import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.Map;
 
-public abstract class TableDAO implements Closeable {
-    protected String tableName;
+public abstract class BaseTable implements Closeable {
     protected Connection connection;
 
-    abstract public void createTable();
-    abstract public void insert(HandbookRegister register);
-    abstract public List<HandbookRegister> select(HandbookRegister register);
-    abstract public void update(HandbookRegister register);
-    abstract public void deleteRegister(HandbookRegister register);
-    abstract public void deleteTable();
+    abstract public void createTable(String tableName, Map<String, String> columnsSettings);
+    abstract public void deleteTable(String tableName);
+    abstract public void addColumn(String tableName, String previousColumn, String name, String type);
+    abstract public void deleteColumn(String tableName, String columnName);
+    abstract public void renameTable(String oldName, String newName);
 
-    TableDAO(String tableName) {
-        this.tableName = tableName;
+    BaseTable() {
         this.connection = Service.getConnection();
     }
     public void setConnection(Connection connection) {

@@ -2,52 +2,47 @@ package com.company.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import java.util.LinkedHashMap;
+
 @JsonAutoDetect
-public class HandbookRegister extends BaseRegister {
-    private String firstName;
-    private String lastName;
-    private String numberPhone;
-    public HandbookRegister() {
+public class HandbookRegister {
+    private String tableName;
+    private LinkedHashMap<String, String> columnsSettings;
+    private LinkedHashMap<String, String> columnData;
 
-    }
-    public HandbookRegister(long id, String firstName, String lastName, String numberPhone) {
-        super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.numberPhone = numberPhone;
-    }
 
-    public String getFirstName() {
-        return firstName;
+    public HandbookRegister(String tableName, LinkedHashMap<String, String> columnsSettings,
+                            LinkedHashMap<String, String> columnData) {
+        this.tableName = tableName;
+        this.columnsSettings = columnsSettings;
+        this.columnData = columnData;
     }
-
-    public String getLastName() {
-        return lastName;
+    public HandbookRegister(String tableName, LinkedHashMap<String, String> columnData) {
+        this.tableName = tableName;
+        this.columnData = columnData;
     }
 
-    public String getNumberPhone() {
-        return numberPhone;
+    public String getTableName() {
+        return tableName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public LinkedHashMap<String, String> getColumnsSettings() {
+        return columnsSettings;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public LinkedHashMap<String, String> getColumnData() {
+        return columnData;
     }
 
-    public void setNumberPhone(String numberPhone) {
-        this.numberPhone = numberPhone;
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 
-    @Override
-    public String toString() {
-        return "HandbookRegister{" +
-                "id='" + getId() + '\'' +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", numberPhone='" + numberPhone + '\'' +
-                '}';
+    public void setColumnsSettings(LinkedHashMap<String, String> columnsSettings) {
+        this.columnsSettings = columnsSettings;
+    }
+
+    public void setColumnData(LinkedHashMap<String, String> columnData) {
+        this.columnData = columnData;
     }
 }

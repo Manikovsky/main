@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.List;
 
 public class Controller {
-
+/*
     private Writer writer;
     private Service service;
 
@@ -104,7 +104,7 @@ public class Controller {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String createTable = "{\"type\":\"CREATE_TABLE\",\"registers\":null}";
         String insertRegister1 = "{\"type\":\"INSERT_REGISTER\",\"registers\":[{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Manikovsky\",\"numberPhone\":\" 11\"}]}";
         String insertRegister3 = "{\"type\":\"INSERT_REGISTER\",\"registers\":[{\"id\":3,\"firstName\":\"Ivan\",\"lastName\":\"Leonov\",\"numberPhone\":\" 22\"}]}";
@@ -125,5 +125,5 @@ public class Controller {
         System.out.println(writer.toString());
 
     }
-
+*/
 }

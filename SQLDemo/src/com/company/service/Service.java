@@ -4,10 +4,7 @@ import com.company.model.HandbookRegister;
 import com.company.repository.Handbook;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Service {
 
@@ -38,15 +35,18 @@ public class Service {
         String previousColumn = null;
         Map<String, String> newColumnsSettings = register.getColumnsSettings();
         for(Map.Entry<String, String> pair: newColumnsSettings.entrySet()) {
+            Map<String, String> oldMapSettings = tables.get(register.getTableName());
             String columnName = pair.getKey();
             String columnType = pair.getValue();
-            Map<String, String> oldMapSettings = tables.get(register.getTableName());
-            if(oldMapSettings.containsKey(columnName)) previousColumn = columnName;
-            else {
+            if(!oldMapSettings.containsKey(columnName)) {
                 handbook.addColumn(register.getTableName(), previousColumn, columnName, columnType);
-                oldMapSettings.put(columnName, columnType);
             }
+            previousColumn = columnName;
         }
+        Map<String, String> temp = new LinkedHashMap<>();
+        temp.put("id", "BIGINT");
+        temp.putAll(newColumnsSettings);
+        tables.put(register.getTableName(),temp);
     }
 
     public void deleteColumn(HandbookRegister register) {
@@ -74,25 +74,25 @@ public class Service {
     }
 
     public void insert(HandbookRegister register) {
-        handbook.insert(register.getTableName(),register.getColumnsData(), register.getColumnsSettings());
+        handbook.insert(register.getTableName(), register.getColumnsData(), register.getColumnsSettings());
     }
 
-    public Map<String, String> changeColumn(HandbookRegister register) {
+    public void changeColumn(HandbookRegister register) {
         deleteColumn(register);
         addColumn(register);
-        return tables.get(register.getTableName());
     }
 
-    public Map<Integer, HashMap<String, String>> find(HandbookRegister register) {
+    public Map<Integer, Map<String, String>> find(HandbookRegister register) {
         return handbook.select(register.getTableName(), register.getColumnsData(), register.getColumnsSettings());
     }
 
     public void update(HandbookRegister register) {
-        handbook. update(register.getTableName(), register.getColumnsData(), register.getColumnsSettings());
+        handbook.update(register.getTableName(), register.getColumnsData(), register.getColumnsSettings());
     }
 
     public void deleteHandbook(HandbookRegister register) {
         handbook.deleteTable(register.getTableName());
+        tables.remove(register.getTableName());
     }
 
     public void deleteRegister(HandbookRegister register) {
@@ -101,6 +101,10 @@ public class Service {
 
     public void closeConnection() {
         handbook.close();
+    }
+
+    public Map<String, String> getTableSettings(HandbookRegister register) {
+        return tables.get(register.getTableName());
     }
 
 }

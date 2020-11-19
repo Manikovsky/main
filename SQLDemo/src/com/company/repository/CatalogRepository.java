@@ -6,9 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
+/**
+ * Репозиторий для работы со справочниками
+ */
 public class CatalogRepository extends BaseRepository {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initializationTable() {
         String request = "CREATE TABLE IF NOT EXISTS Catalog" +
@@ -17,6 +22,10 @@ public class CatalogRepository extends BaseRepository {
         super.executeSqlStatement(request);
     }
 
+    /**
+     * Функция добавления справочника
+     * @param catalog - модель справочника
+     */
     @Override
     public void addRecord(Catalog catalog) {
         String request = String.format("INSERT INTO Catalog " +
@@ -24,6 +33,10 @@ public class CatalogRepository extends BaseRepository {
         super.executeSqlStatement(request);
     }
 
+    /**
+     * Функция удаления справочника по его наименованию
+     * @param catalog - модель справочника
+     */
     @Override
     public void deleteRecord(Catalog catalog) {
         String request = String.format("DELETE FROM Catalog WHERE " +
@@ -31,6 +44,10 @@ public class CatalogRepository extends BaseRepository {
         super.executeSqlStatement(request);
     }
 
+    /**
+     * Функция изменения наименования справочника по его id
+     * @param catalog - модель справочника
+     */
     @Override
     public void changeRecord(Catalog catalog) {
         String request = String.format("UPDATE Catalog SET " +
@@ -39,6 +56,11 @@ public class CatalogRepository extends BaseRepository {
         super.executeSqlStatement(request);
     }
 
+    /**
+     * Функция поиска справочника по его наименованию
+     * @param catalog - модель справочника
+     * @return Catalog - искомая модель справочника
+     */
     @Override
     public Catalog findRecord(Catalog catalog) {
         String request = String.format("SELECT * FROM Catalog WHERE catalog_name = '%s'", catalog.getTableName());

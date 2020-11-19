@@ -10,8 +10,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Репозиторий для работы с полями справочника
+ */
 public class ColumnRepository extends BaseRepository {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initializationTable() {
         String request = "CREATE TABLE IF NOT EXISTS Column" +
@@ -22,6 +28,10 @@ public class ColumnRepository extends BaseRepository {
         super.executeSqlStatement(request);
     }
 
+    /**
+     * Функция добавления полей справочника по его id
+     * @param catalog - модель справочника
+     */
     @Override
     public void addRecord(Catalog catalog) {
         List<Column> columnsSettings = catalog.getRows().get(0).getColumns();
@@ -34,6 +44,10 @@ public class ColumnRepository extends BaseRepository {
         }
     }
 
+    /**
+     * Функция удаления поля справочника по наименованию поля и id справочника
+     * @param catalog - модель справочника
+     */
     @Override
     public void deleteRecord(Catalog catalog) {
         List<Column> columnsSettings = catalog.getRows().get(0).getColumns();
@@ -44,22 +58,31 @@ public class ColumnRepository extends BaseRepository {
         super.executeSqlStatement(request);
     }
 
+    /**
+     * Функция изменения поля справочника
+     * @param catalog - модель справочника
+     */
     @Override
     public void changeRecord(Catalog catalog) {
         deleteRecord(catalog);
         addRecord(catalog);
     }
 
+    /**
+     * Функция поиска полей справочника по его id
+     * @param catalog - модель справочника
+     * @return Catalog - искомая модель справочника
+     */
     @Override
     public Catalog findRecord(Catalog catalog) {
-        List<Column> columnsList = new ArrayList<>();
+        List<Column> columnsSettings = new ArrayList<>();
         List<Row> rowList =  new ArrayList<>();
-        rowList.add(new Row(-1,columnsList));
+        rowList.add(new Row(-1, columnsSettings));
         String request = String.format("SELECT * FROM Column WHERE catalog_reference = %d", catalog.getTableId());
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(request)) {
             while (resultSet.next()) {
-                columnsList.add(new Column(resultSet.getLong(1), resultSet.getString(3),
+                columnsSettings.add(new Column(resultSet.getLong(1), resultSet.getString(3),
                         resultSet.getString(4), null));
             }
         } catch (SQLException e) {

@@ -93,7 +93,6 @@ public class RowRepository extends BaseRepository{
                     column.getColumnId(), column.getColumnData()));
         }
         request.replace(request.length()-11, request.length(),"");
-        System.out.println(request);
         return request;
     }
 

@@ -10,8 +10,8 @@ import com.company.repository.ColumnRepository;
 import java.util.List;
 
 /**
- * Класс - сервис, необходимый для осуществления
- * редактирования структуры справочника
+ * Класс - сервис, осуществляющий
+ * редактирование структуры справочника
  */
 public class CatalogService {
 

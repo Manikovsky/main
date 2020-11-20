@@ -67,8 +67,9 @@ public class Row {
         if (!(o instanceof Row)) return false;
         Row row = (Row) o;
         return getId() == row.getId() &&
-                getColumns().equals(row.getColumns());
+                Objects.equals(getColumns(), row.getColumns());
     }
+
 
     /**
      * Функция определения хэш кода объекта
@@ -76,5 +77,13 @@ public class Row {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getColumns());
+    }
+
+    @Override
+    public String toString() {
+        return "Row{" +
+                "id=" + id +
+                ", columns=" + columns +
+                '}';
     }
 }

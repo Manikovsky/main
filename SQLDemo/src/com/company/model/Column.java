@@ -83,9 +83,9 @@ public class Column {
         if (!(o instanceof Column)) return false;
         Column column = (Column) o;
         return getColumnId() == column.getColumnId() &&
-                getColumnName().equals(column.getColumnName()) &&
-                getColumnType().equals(column.getColumnType()) &&
-                getColumnData().equals(column.getColumnData());
+                Objects.equals(getColumnName(), column.getColumnName()) &&
+                Objects.equals(getColumnType(), column.getColumnType()) &&
+                Objects.equals(getColumnData(), column.getColumnData());
     }
 
     /**
@@ -96,4 +96,13 @@ public class Column {
         return Objects.hash(getColumnId(), getColumnName(), getColumnType(), getColumnData());
     }
 
+    @Override
+    public String toString() {
+        return "Column{" +
+                "columnId=" + columnId +
+                ", columnName='" + columnName + '\'' +
+                ", columnType='" + columnType + '\'' +
+                ", columnData='" + columnData + '\'' +
+                '}';
+    }
 }

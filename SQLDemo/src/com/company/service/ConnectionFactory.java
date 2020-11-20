@@ -13,7 +13,7 @@ public class ConnectionFactory {
     /** Путь к базе данных*/
     public static final String DB_URL = "jdbc:h2:C:\\Users\\Ivan\\IdeaProjects\\sber\\SQLDemo\\db\\database";
     //public static final String DB_URL = "jdbc:h2:/home/hackerman/java/SQLDemo/db/dataBase";
-    //public static final String DB_Driver = "org.h2.Driver";
+
 
     /** Пул соединений к БД */
     static JdbcConnectionPool cp = JdbcConnectionPool.create(DB_URL,"sa", "sa");

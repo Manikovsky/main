@@ -72,23 +72,20 @@ public class ValueRepository extends BaseRepository {
     public Catalog findRecord(Catalog catalog) {
         List<Row> rowsResult = new ArrayList<>();
         for(Row currentRow : catalog.getRows()) {
+            List<Column> columnsResult = new ArrayList<>();
             String request = String.format("SELECT Column.id, Column.column_name, Column.column_type, " +
                     "Value.data FROM Value JOIN Column ON Column.id = Value.column_reference " +
                     "WHERE row_reference = %d", currentRow.getId());
-            System.out.println(request);
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(request)) {
                 while (resultSet.next()) {
-                    System.out.println(resultSet.getString(1)+" " +resultSet.getString(2)+
-                            " "+ resultSet.getString(3)+ " " + resultSet.getString(4));
-                    List<Column> columnsResult = new ArrayList<>();
                     columnsResult.add(new Column(resultSet.getLong(1), resultSet.getString(2),
                             resultSet.getString(3), resultSet.getString(4)));
-                    rowsResult.add(new Row(currentRow.getId(), columnsResult));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            rowsResult.add(new Row(currentRow.getId(), columnsResult));
         }
         return new Catalog(catalog.getTableName(), catalog.getTableId(), rowsResult);
     }

@@ -9,14 +9,14 @@ import com.company.repository.ValueRepository;
 import java.util.List;
 
 /**
- * Класс - сервис, необходимый для осуществления операций
+ * Класс - сервис, осуществляющий операции
  * над данными в справочнике
  */
 public class DataService {
 
     /** Поле - сервис, необходимый для получения информации
      * о структуре справочника*/
-    private CatalogService catalogService = new CatalogService();
+    private final CatalogService catalogService = new CatalogService();
 
     /** Репозиторий  строк*/
     private final RowRepository rowRepository = new RowRepository();
@@ -88,6 +88,14 @@ public class DataService {
     }
 
     /**
+     * Функция получения сервиса для работы с настройками таблицы
+     * @return CatalogService - сервис настройки таблицы
+     */
+    public CatalogService getCatalogService() {
+        return catalogService;
+    }
+
+    /**
      * Функция установки номеров полей (столбцов)
      * @param  catalog - структура справочника
      */
@@ -106,4 +114,5 @@ public class DataService {
             }
         }
     }
+
 }

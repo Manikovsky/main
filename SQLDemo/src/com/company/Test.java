@@ -18,7 +18,7 @@ public class Test {
         List<Column> columnList = new ArrayList<>();
         columnList.add(new Column(0, "first_name", "String", null));
         columnList.add(new Column(0, "last_name", "String", null));
-        columnList.add(new Column(0, "thirth_name", "String", null));
+        columnList.add(new Column(0, "other_name", "String", null));
         List<Row> rowList = new ArrayList<>();
         rowList.add(new Row(0, columnList));
         Catalog catalog = new Catalog("Handbook", 0, rowList);

@@ -79,8 +79,8 @@ public class Catalog {
         if (!(o instanceof Catalog)) return false;
         Catalog catalog = (Catalog) o;
         return getTableId() == catalog.getTableId() &&
-                getTableName().equals(catalog.getTableName()) &&
-                getRows().equals(catalog.getRows());
+                Objects.equals(getTableName(), catalog.getTableName()) &&
+                Objects.equals(getRows(), catalog.getRows());
     }
 
     /**
@@ -89,5 +89,14 @@ public class Catalog {
     @Override
     public int hashCode() {
         return Objects.hash(getTableName(), getTableId(), getRows());
+    }
+
+    @Override
+    public String toString() {
+        return "Catalog{" +
+                "tableName='" + tableName + '\'' +
+                ", tableId=" + tableId +
+                ", rows=" + rows +
+                '}';
     }
 }

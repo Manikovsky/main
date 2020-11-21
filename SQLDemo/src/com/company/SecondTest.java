@@ -76,7 +76,7 @@ public class SecondTest {
             List<Column> columnsSettings = new ArrayList<>();
             columnsSettings.add(new Column(0, "first_name", "String", "Ivan - " + i));
             columnsSettings.add(new Column(0, "last_name", "String", "Manikovsky - " +i));
-            columnsSettings.add(new Column(0, "number", "Integer", String.valueOf(i)));
+            columnsSettings.add(new Column(0, "number", "Integer", i));
             rowList.add(new Row(0, columnsSettings));
         }
         dataService.addRegister(new Catalog("Handbook", 0, rowList));
@@ -90,10 +90,11 @@ public class SecondTest {
         List<Column> actualColumn = new ArrayList<>();
         actualColumn.add(new Column(1, "first_name", "String", "Ivan - " + 2));
         actualColumn.add(new Column(2, "last_name", "String", "Manikovsky - " +2));
-        actualColumn.add(new Column(4, "number", "Integer", String.valueOf(2)));
+        actualColumn.add(new Column(4, "number", "Integer", 2));
         rowList.clear();
         rowList.add(new Row(3, actualColumn));
         Catalog expectedCatalog = new Catalog("Handbook", 1, rowList);
+        System.out.println(actualCatalog);
         Assert.assertEquals(expectedCatalog, actualCatalog);
     }
 
@@ -102,7 +103,7 @@ public class SecondTest {
         List<Column> columnsSettings = new ArrayList<>();
         columnsSettings.add(new Column(0, "first_name", "String", "Egor"));
         columnsSettings.add(new Column(0, "last_name", "String", "Ivanov"));
-        columnsSettings.add(new Column(0, "number", "Integer", "140"));
+        columnsSettings.add(new Column(0, "number", "Integer", 140));
         rowList.add(new Row(1, columnsSettings));
         dataService.changeRegister(new Catalog("Handbook", 0, rowList));
 
@@ -114,7 +115,7 @@ public class SecondTest {
         List<Column> actualColumn = new ArrayList<>();
         actualColumn.add(new Column(1, "first_name", "String", "Egor"));
         actualColumn.add(new Column(2, "last_name", "String", "Ivanov"));
-        actualColumn.add(new Column(4, "number", "Integer", "140"));
+        actualColumn.add(new Column(4, "number", "Integer", 140));
         rowList.clear();
         rowList.add(new Row(1, actualColumn));
         Catalog expectedCatalog = new Catalog("Handbook", 1, rowList);

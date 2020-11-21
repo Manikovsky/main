@@ -18,7 +18,7 @@ public class Column {
     private final String columnType;
 
     /** Данные*/
-    private final String columnData;
+    private final Object columnData;
 
     /** Конструктор поля
      * @param columnId - номер поля
@@ -26,7 +26,7 @@ public class Column {
      * @param columnType - тип данных в поле
      * @param columnData - данные
      * */
-    public Column(long columnId, String columnName, String columnType, String columnData) {
+    public Column(long columnId, String columnName, String columnType, Object columnData) {
         this.columnId = columnId;
         this.columnName = columnName;
         this.columnType = columnType;
@@ -61,7 +61,7 @@ public class Column {
      * Функция получения данных поля
      * @return String
      */
-    public String getColumnData() {
+    public Object getColumnData() {
         return columnData;
     }
 

@@ -4,6 +4,7 @@ import com.company.model.Catalog;
 import com.company.model.Column;
 import com.company.model.Row;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -79,8 +80,16 @@ public class ValueRepository extends BaseRepository {
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(request)) {
                 while (resultSet.next()) {
+                    String type = resultSet.getString(3);
+                    Object data;
+                    if(type.equalsIgnoreCase("String")) data = resultSet.getString(4);
+                    else if(type.equalsIgnoreCase("Integer"))
+                        data = Integer.parseInt(resultSet.getString(4));
+                    else if(type.equalsIgnoreCase("Boolean"))
+                        data = Boolean.getBoolean(resultSet.getString(4));
+                    else data = Date.valueOf(resultSet.getString(4));
                     columnsResult.add(new Column(resultSet.getLong(1), resultSet.getString(2),
-                            resultSet.getString(3), resultSet.getString(4)));
+                            type, data));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -98,4 +98,5 @@ public class ValueRepository extends BaseRepository {
         }
         return new Catalog(catalog.getTableName(), catalog.getTableId(), rowsResult);
     }
+
 }
